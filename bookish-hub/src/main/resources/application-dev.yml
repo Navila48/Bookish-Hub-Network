@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/book_hub_network
+    username: username
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+      database: postgresql
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: localhost
+    port: 1025
+    username: tasnuva
+    password: tasnuva
+    properties:
+      mail:
+        smtp:
+          truest: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+application:
+    security:
+      jwt:
+        secret-key: "MZygpewJsCpR0MzVdS9zqIbTbZf2JHVaJJmF2aFQXkM="
+        expiration: 86400000 # 1 day
+    mailing:
+      frontend:
+        activation-url: http://localhost:4200/activate-account
+    file:
+      upload:
+        cover-photo-path: "./upload"
+Server:
+    port: 8088

@@ -1,0 +1,14 @@
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.uploads
+
+# Build artifacts
+out/
+target/ # Common for Java Maven projects
+build/ # Common for various build systems
+dist/ # Common for various build systems
+*.log
+*.class # For Java
