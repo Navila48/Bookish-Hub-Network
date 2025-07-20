@@ -8,7 +8,6 @@ import com.tasnuva.book.user.Token;
 import com.tasnuva.book.user.TokenRepository;
 import com.tasnuva.book.user.User;
 import com.tasnuva.book.user.UserRepository;
-import io.jsonwebtoken.Claims;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +21,6 @@ import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
-
 
 @Service
 @RequiredArgsConstructor
@@ -43,6 +40,7 @@ public class AuthenticationService {
     public void register(RegistrationRequest request) throws MessagingException {
         var userRole = roleRepository.findByName("USER")
                 .orElseThrow(()-> new IllegalStateException("Role is not found"));
+
         var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())

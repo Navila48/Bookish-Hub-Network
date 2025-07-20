@@ -1,6 +1,5 @@
-package com.tasnuva.book.book;
+package com.tasnuva.book.bookTransactionHistory;
 
-import com.tasnuva.book.bookTransactionHistory.BookTransactionHistory;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,14 +11,14 @@ import java.util.Optional;
 public interface BookTransactionHistoryRepository extends JpaRepository<BookTransactionHistory, Integer> {
 
     @Query("""
-        SELECT history 
+        SELECT history
         FROM BookTransactionHistory history
         WHERE history.user.id = :userId
     """)
     Page<BookTransactionHistory> findAllBorrowedBooks(Pageable pageable, Integer userId);
 
     @Query("""
-        SELECT history 
+        SELECT history
         FROM BookTransactionHistory history
         WHERE history.book.owner.id = :userId
     """)
@@ -31,12 +30,11 @@ public interface BookTransactionHistoryRepository extends JpaRepository<BookTran
         WHERE transactionHistory.book.id = :bookId
         AND transactionHistory.returned = false
         OR transactionHistory.returnApproved = false
-            
     """)
     boolean isAlreadyBorrowed(@Valid Integer bookId, Integer userId);
 
     @Query("""
-        SELECT count(*)>0 
+        SELECT count(*)>0
         FROM BookTransactionHistory transactionHistory
         WHERE transactionHistory.book.id = :bookId
         AND transactionHistory.user.id = :userId
@@ -60,7 +58,7 @@ public interface BookTransactionHistoryRepository extends JpaRepository<BookTran
         FROM BookTransactionHistory transactionHistory
         WHERE transactionHistory.book.owner.id = :userId
         AND transactionHistory.book.id = :bookId
-        AND transactionHistory.returned = true 
+        AND transactionHistory.returned = true
         AND transactionHistory.returnApproved = false
     """)
     Optional<BookTransactionHistory> findByBookIdAndOwnerId(Integer bookId, Integer userId);

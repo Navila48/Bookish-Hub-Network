@@ -21,5 +21,6 @@ public class FileUtils {
         }catch(IOException exp){
             log.warn("Error reading file from location", exp);
         }
+        return null;
     }
 }

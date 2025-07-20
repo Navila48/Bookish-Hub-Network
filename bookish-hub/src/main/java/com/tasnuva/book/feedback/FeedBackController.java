@@ -20,13 +20,13 @@ public class FeedBackController {
         return ResponseEntity.ok(feedbackService.saveFeedback(feedbackRequest, connectedUser));
     }
 
-    @GetMapping("/book/{book_id}")
+    @GetMapping("/book/{book-id}")
     public ResponseEntity<PageResponse<FeedbackResponse>> findAllFeedbackByBook(
-            @PathVariable Integer bookId,
+            @PathVariable("book-id") Integer bookId,
             @RequestParam( name = "page", defaultValue = "0", required = false) int page,
             @RequestParam( name = "size", defaultValue = "10", required = false) int size,
             Authentication connectedUser
             ){
-        new ResponseEntity.ok(feedbackService.findAllFeedbackByBook(page, size, bookId, connectedUser));
+        return ResponseEntity.ok(feedbackService.findAllFeedbackByBook(page, size, bookId, connectedUser));
     }
 }

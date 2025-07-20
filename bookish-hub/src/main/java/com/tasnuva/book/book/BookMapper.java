@@ -4,8 +4,6 @@ import com.tasnuva.book.bookTransactionHistory.BookTransactionHistory;
 import com.tasnuva.book.file.FileUtils;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
-
 @Service
 public class BookMapper {
     public Book convertToBook(BookRequest bookRequest) {

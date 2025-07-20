@@ -1,6 +1,7 @@
 package com.tasnuva.book.book;
 
 import com.tasnuva.book.bookTransactionHistory.BookTransactionHistory;
+import com.tasnuva.book.bookTransactionHistory.BookTransactionHistoryRepository;
 import com.tasnuva.book.common.PageResponse;
 import com.tasnuva.book.file.FileStorageService;
 import com.tasnuva.book.user.User;
@@ -13,16 +14,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import static com.tasnuva.book.book.BookSpecification.withOwnerId;
 
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class BookService {
 
     private final BookRepository bookRepository;
@@ -132,7 +134,7 @@ public class BookService {
         Book book = bookRepository.findById(bookId).orElseThrow(()-> new EntityNotFoundException("Book not found with ID ::" + bookId));
         User user = (User) connectedUser.getPrincipal();
         if(Objects.equals(book.getOwner().getId(), user.getId())){
-            throw new OperationNoPermittedException("You can return your own book");
+            throw new OperationNoPermittedException("You can't return your own book");
         }
         if(book.isArchived() || !book.isSharable()){
             throw new OperationNoPermittedException("You can't return the book as it is archived or not shareable");
