@@ -10,7 +10,7 @@ public enum BusinessErrorCode {
     NEW_PASSWORD_DOES_NOT_MATCH(301,HttpStatus.BAD_REQUEST, "Password does not match"),
     ACCOUNT_LOCKED(302,HttpStatus.FORBIDDEN, "Account locked"),
     ACCOUNT_DISABLED(303,HttpStatus.FORBIDDEN, "Account disabled"),
-    BAD_CREDENTIALS(304,HttpStatus.FORBIDDEN, "Bad credentials"),
+    BAD_CREDENTIALS(304,HttpStatus.FORBIDDEN, "Incorrect email or password"),
     ;
 
     @Getter
