@@ -1,0 +1,31 @@
+<div class="container">
+  @if (isSubmitted){
+    @if (isOkay){
+      <div class="activation-message">
+        <h2>Activation Successful! </h2>
+        <p>{{message}}</p>
+        <button class="btn btn-primary" (click)="redirectToLogin()">Go to Login</button>
+      </div>
+    } @else {
+      <div class="activation-error">
+        <h2>Activation Failed! </h2>
+        <p>{{message}}</p>
+        <button class="btn btn-primary" (click)="isSubmitted = false">Try Again</button>
+      </div>
+    }
+
+  } @else{
+    <div class="container">
+      <div class="text-center" style="width: 400px;">
+        <h2> Type your activation code </h2>
+        <code-input
+            [isCodeHidden]="false"
+            [codeLength]="6"
+            [code]="'number'"
+            (codeCompleted)="onCodeCompleter($event)"
+
+        ></code-input>
+      </div>
+    </div>
+  }
+</div>

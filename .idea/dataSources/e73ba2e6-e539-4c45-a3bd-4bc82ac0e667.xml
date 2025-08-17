@@ -11,9 +11,9 @@
 4||10|c|G
 4||10|C|G
 4||10|T|G</Grants>
-      <IntrospectionStateNumber>812</IntrospectionStateNumber>
+      <IntrospectionStateNumber>832</IntrospectionStateNumber>
       <ServerVersion>17.5</ServerVersion>
-      <StartupTime>1750350969</StartupTime>
+      <StartupTime>1754388711</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1409,66 +1409,66 @@ true posixrules
 13219||10|C|G
 13219||-9223372036854775808|U|G
 13219||10|U|G</Grants>
-      <IntrospectionStateNumber>812</IntrospectionStateNumber>
+      <IntrospectionStateNumber>832</IntrospectionStateNumber>
       <ObjectId>16389</ObjectId>
       <OwnerName>username</OwnerName>
     </database>
-    <database id="3" parent="1" name="postgres">
+    <database id="3" parent="1" name="bookish_hub">
+      <ObjectId>16384</ObjectId>
+      <OwnerName>username</OwnerName>
+    </database>
+    <database id="4" parent="1" name="postgres">
       <Comment>default administrative connection database</Comment>
       <ObjectId>5</ObjectId>
       <OwnerName>username</OwnerName>
     </database>
-    <database id="4" parent="1" name="bookish_hub">
-      <ObjectId>16384</ObjectId>
-      <OwnerName>username</OwnerName>
-    </database>
-    <role id="5" parent="1" name="pg_database_owner">
+    <role id="5" parent="1" name="pg_checkpoint">
+      <ObjectId>4544</ObjectId>
+    </role>
+    <role id="6" parent="1" name="pg_create_subscription">
+      <ObjectId>6304</ObjectId>
+    </role>
+    <role id="7" parent="1" name="pg_database_owner">
       <ObjectId>6171</ObjectId>
     </role>
-    <role id="6" parent="1" name="pg_read_all_data">
-      <ObjectId>6181</ObjectId>
+    <role id="8" parent="1" name="pg_execute_server_program">
+      <ObjectId>4571</ObjectId>
     </role>
-    <role id="7" parent="1" name="pg_write_all_data">
-      <ObjectId>6182</ObjectId>
+    <role id="9" parent="1" name="pg_maintain">
+      <ObjectId>6337</ObjectId>
     </role>
-    <role id="8" parent="1" name="pg_monitor">
+    <role id="10" parent="1" name="pg_monitor">
       <ObjectId>3373</ObjectId>
       <RoleGrants>3374
 3375
 3377</RoleGrants>
     </role>
-    <role id="9" parent="1" name="pg_read_all_settings">
+    <role id="11" parent="1" name="pg_read_all_data">
+      <ObjectId>6181</ObjectId>
+    </role>
+    <role id="12" parent="1" name="pg_read_all_settings">
       <ObjectId>3374</ObjectId>
     </role>
-    <role id="10" parent="1" name="pg_read_all_stats">
+    <role id="13" parent="1" name="pg_read_all_stats">
       <ObjectId>3375</ObjectId>
     </role>
-    <role id="11" parent="1" name="pg_stat_scan_tables">
-      <ObjectId>3377</ObjectId>
-    </role>
-    <role id="12" parent="1" name="pg_read_server_files">
+    <role id="14" parent="1" name="pg_read_server_files">
       <ObjectId>4569</ObjectId>
-    </role>
-    <role id="13" parent="1" name="pg_write_server_files">
-      <ObjectId>4570</ObjectId>
-    </role>
-    <role id="14" parent="1" name="pg_execute_server_program">
-      <ObjectId>4571</ObjectId>
     </role>
     <role id="15" parent="1" name="pg_signal_backend">
       <ObjectId>4200</ObjectId>
     </role>
-    <role id="16" parent="1" name="pg_checkpoint">
-      <ObjectId>4544</ObjectId>
+    <role id="16" parent="1" name="pg_stat_scan_tables">
+      <ObjectId>3377</ObjectId>
     </role>
-    <role id="17" parent="1" name="pg_maintain">
-      <ObjectId>6337</ObjectId>
-    </role>
-    <role id="18" parent="1" name="pg_use_reserved_connections">
+    <role id="17" parent="1" name="pg_use_reserved_connections">
       <ObjectId>4550</ObjectId>
     </role>
-    <role id="19" parent="1" name="pg_create_subscription">
-      <ObjectId>6304</ObjectId>
+    <role id="18" parent="1" name="pg_write_all_data">
+      <ObjectId>6182</ObjectId>
+    </role>
+    <role id="19" parent="1" name="pg_write_server_files">
+      <ObjectId>4570</ObjectId>
     </role>
     <role id="20" parent="1" name="username">
       <BypassRls>1</BypassRls>
@@ -4840,8 +4840,8 @@ true posixrules
     <schema id="266" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>812</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2025-06-19.16:39:57</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>832</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-08-05.11:34:17</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>532</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4920,7 +4920,7 @@ true posixrules
     </table>
     <table id="277" parent="266" name="feedback">
       <ObjectId>16446</ObjectId>
-      <StateNumber>811</StateNumber>
+      <StateNumber>813</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>username</OwnerName>
     </table>
@@ -5295,9 +5295,9 @@ true posixrules
     </column>
     <column id="333" parent="277" name="rating">
       <Position>7</Position>
-      <StateNumber>804</StateNumber>
-      <StoredType>integer|0s</StoredType>
-      <TypeId>23</TypeId>
+      <StateNumber>813</StateNumber>
+      <StoredType>double precision|0s</StoredType>
+      <TypeId>701</TypeId>
     </column>
     <column id="334" parent="277" name="book_id">
       <Position>8</Position>
@@ -5317,7 +5317,7 @@ true posixrules
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16451</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>804</StateNumber>
+      <StateNumber>813</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
