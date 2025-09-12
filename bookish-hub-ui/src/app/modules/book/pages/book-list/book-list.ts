@@ -3,23 +3,27 @@ import {BookService} from '../../../../services/services/book.service';
 import {Router} from '@angular/router';
 import {subscribe} from 'node:diagnostics_channel';
 import {PageResponseBookResponse} from '../../../../services/models/page-response-book-response';
+import {JsonPipe} from '@angular/common';
 
 @Component({
   selector: 'app-book-list',
-  imports: [],
+  imports: [
+    JsonPipe
+  ],
   templateUrl: './book-list.html',
   styleUrl: './book-list.scss'
 })
 export class BookList implements OnInit {
   private page = 0;
   private size = 5;
-  bookResponse : PageResponseBookResponse = {};
+  bookResponse: PageResponseBookResponse = { };
 
   constructor(
     private bookService: BookService,
     private router: Router
   ) {
   }
+
   ngOnInit(){
     this.findALlBooks();
   }
@@ -28,12 +32,12 @@ export class BookList implements OnInit {
       this.bookService.findAllBooks({
         page: this.page,
         size: this.size
-      }).subscribe(
-        {
+      })
+        .subscribe({
           next: (books)=>{
+       //     console.log('API Response:', books);
             this.bookResponse = books;
           }
-        }
-      );
+        });
   }
 }
