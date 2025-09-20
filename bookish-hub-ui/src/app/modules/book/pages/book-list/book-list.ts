@@ -4,11 +4,13 @@ import {Router} from '@angular/router';
 import {subscribe} from 'node:diagnostics_channel';
 import {PageResponseBookResponse} from '../../../../services/models/page-response-book-response';
 import {JsonPipe} from '@angular/common';
+import {BookCard} from '../../components/book-card/book-card';
 
 @Component({
   selector: 'app-book-list',
   imports: [
-    JsonPipe
+    JsonPipe,
+    BookCard
   ],
   templateUrl: './book-list.html',
   styleUrl: './book-list.scss'
@@ -35,7 +37,7 @@ export class BookList implements OnInit {
       })
         .subscribe({
           next: (books)=>{
-       //     console.log('API Response:', books);
+            console.log('API Response:', books);
             this.bookResponse = books;
           }
         });
