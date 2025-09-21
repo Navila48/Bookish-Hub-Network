@@ -51,7 +51,7 @@ public class BookService {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
         Page<Book> books = bookRepository.findAllDisplayableBooks(pageable, user.getId());
         List<BookResponse> bookResponse = books.stream().map(bookMapper :: convertToBookResponse).toList();
-        return new PageResponse<>(bookResponse, books.getNumber(), books.getSize(),books.getTotalElements(), books.getTotalPages(), books.isLast(), books.isFirst());
+        return new PageResponse<>(bookResponse, books.getNumber(), books.getSize(),books.getTotalElements(), books.getTotalPages(), books.isFirst(), books.isLast());
     }
 
     public PageResponse<BookResponse> findAllBooksByOwner(int page, int size, Authentication connectedUser) {
@@ -59,7 +59,7 @@ public class BookService {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
         Page<Book> books = bookRepository.findAll(withOwnerId(user.getId()), pageable);
         List<BookResponse> bookResponse = books.stream().map(bookMapper :: convertToBookResponse).toList();
-        return  new PageResponse<>(bookResponse, books.getNumber(),books.getSize(),books.getTotalElements(), books.getTotalPages(), books.isLast(), books.isFirst());
+        return  new PageResponse<>(bookResponse, books.getNumber(),books.getSize(),books.getTotalElements(), books.getTotalPages(), books.isFirst(), books.isLast());
     }
 
     public PageResponse<BookTransactionResponse> findAllBorrowedBooks(int page, int size, Authentication connectedUser) {
@@ -68,7 +68,7 @@ public class BookService {
         Page<BookTransactionHistory> allBorrowedBookHistory = transactionHistoryRepository.findAllBorrowedBooks(pageable, user.getId());
         List<BookTransactionResponse> borrowedBookResponses = allBorrowedBookHistory.stream().map(bookMapper :: convertToBorrowedBookResponse).toList();
         return new PageResponse<>(borrowedBookResponses, allBorrowedBookHistory.getNumber(), allBorrowedBookHistory.getSize(),
-                allBorrowedBookHistory.getTotalElements(), allBorrowedBookHistory.getTotalPages(), allBorrowedBookHistory.isLast(), allBorrowedBookHistory.isFirst());
+                allBorrowedBookHistory.getTotalElements(), allBorrowedBookHistory.getTotalPages(), allBorrowedBookHistory.isFirst(), allBorrowedBookHistory.isLast());
 
     }
 
@@ -78,7 +78,7 @@ public class BookService {
         Page<BookTransactionHistory> allReturnedBookHistory = transactionHistoryRepository.findAllReturnedBooks(pageable, user.getId());
         List<BookTransactionResponse> returnedBookResponses = allReturnedBookHistory.stream().map(bookMapper :: convertToBorrowedBookResponse).toList();
         return new PageResponse<>(returnedBookResponses, allReturnedBookHistory.getNumber(), allReturnedBookHistory.getSize(),
-                allReturnedBookHistory.getTotalElements(), allReturnedBookHistory.getTotalPages(), allReturnedBookHistory.isLast(), allReturnedBookHistory.isFirst());
+                allReturnedBookHistory.getTotalElements(), allReturnedBookHistory.getTotalPages(), allReturnedBookHistory.isFirst(), allReturnedBookHistory.isLast());
 
     }
 

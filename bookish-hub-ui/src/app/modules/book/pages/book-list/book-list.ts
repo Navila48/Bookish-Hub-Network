@@ -5,6 +5,8 @@ import {subscribe} from 'node:diagnostics_channel';
 import {PageResponseBookResponse} from '../../../../services/models/page-response-book-response';
 import {JsonPipe} from '@angular/common';
 import {BookCard} from '../../components/book-card/book-card';
+import {findAllBooks} from '../../../../services/fn/book/find-all-books';
+import {range} from 'rxjs';
 
 @Component({
   selector: 'app-book-list',
@@ -16,8 +18,8 @@ import {BookCard} from '../../components/book-card/book-card';
   styleUrl: './book-list.scss'
 })
 export class BookList implements OnInit {
-  private page = 0;
-  private size = 5;
+  page = 0;
+  size = 1;
   bookResponse: PageResponseBookResponse = { };
 
   constructor(
@@ -41,5 +43,38 @@ export class BookList implements OnInit {
             this.bookResponse = books;
           }
         });
+  }
+
+  goToFirstPage() {
+    this.page = 0;
+    this.findALlBooks();
+  }
+
+  goToPreviousPage() {
+    this.page--;
+    this.findALlBooks();
+  }
+
+  goToPage(pageIndex : number) {
+    this.page = pageIndex;
+    this.findALlBooks();
+  }
+
+  goToNextPage() {
+    this.page++;
+    this.findALlBooks();
+  }
+
+  goToLastPage() {
+    this.page = this.bookResponse.totalPages as number -1;
+    this.findALlBooks();
+  }
+
+  range(n:number | undefined) : number[]{
+    return n ? Array.from({length: n}) : [] ;
+  }
+
+  get isLastPage() : boolean{
+    return this.page === this.bookResponse.totalPages as number -1;
   }
 }
