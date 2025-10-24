@@ -8,7 +8,7 @@ import {Rating} from '../rating/rating';
     Rating
   ],
   templateUrl: './book-card.html',
-  styleUrl: './book-card.scss'
+  styleUrls: ['./book-card.scss']
 })
 export class BookCard {
 
