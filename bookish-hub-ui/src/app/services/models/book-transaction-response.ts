@@ -9,4 +9,5 @@ export interface BookTransactionResponse {
   returnApproved?: boolean;
   returned?: boolean;
   title?: string;
+  rate?:number
 }

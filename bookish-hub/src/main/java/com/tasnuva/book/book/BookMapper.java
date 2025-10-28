@@ -42,6 +42,7 @@ public class BookMapper {
                 .isbn(transactionHistory.getBook().getIsbn())
                 .returned(transactionHistory.isReturned())
                 .returnApproved(transactionHistory.isReturnApproved())
+                .rate(transactionHistory.getBook().getRate())
                 .build();
     }
 }
