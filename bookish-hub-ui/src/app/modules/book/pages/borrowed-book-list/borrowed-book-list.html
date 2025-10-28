@@ -1,0 +1,105 @@
+<h2>My Borrowed Book List </h2>
+<hr>
+<div>
+  <Table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">ISBN</th>
+      <th scope="col">Rate</th>
+      <th scope="col"><i class="fas fa-cogs"></i></th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (book of borrowedBooks.contents; track $index) {
+        <tr>
+          <th scope="row"> {{ $index+1 }}</th>
+          <td>{{book.title}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.isbn}}</td>
+          <td>0</td>
+          <td>
+            <div class="d-flex gap-2">
+              @if (book.returned){
+                <i class="fa-regular fa-paper-plane text-primary"></i>
+              } @else{
+                <i (click)="returnBorrowedBooks(book)" class="fa-solid fa-paper-plane text-success"></i>
+              }
+              <i class="fa-solid fa-circle-check" [class.text-success]="book.returnApproved"></i>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </Table>
+
+  <div class="d-flex justify-content-center mt-3">
+    <nav aria-label="Pag Navigation">
+      <ul class="pagination">
+        <li class="page-item">
+          <a
+            (click)="goToFirstPage()"
+            class="page-link"
+            href="javascript:void(0)"
+            aria-label="First Page"
+            [class.disabled]="page === 0"
+          >
+            <i class="fas fa-angles-left"></i>
+          </a>
+        </li>
+        <li class="page-item">
+          <a
+            (click)="goToPreviousPage()"
+            class="page-link"
+            href="javascript:void(0)"
+            aria-label="Previous"
+            [class.disabled]="page === 0"
+          >
+            <i class="fas fa-angle-left"></i>
+          </a>
+        </li>
+        @for (pageId of range(borrowedBooks.totalPages); track $index){
+          <li class="page-item">
+            <a
+              (click)="goToPage($index)"
+              class="page-link"
+              href="javascript:void(0)"
+              aria-label="Current Page"
+              [class.active]="page === $index"
+            >
+              {{$index +1 }}
+            </a>
+          </li>
+        }
+
+        <li class="page-item">
+          <a
+            (click)="goToNextPage()"
+            class="page-link"
+            href="javascript:void(0)"
+            aria-label="Next Page"
+            [class.disabled]="isLastPage"
+          >
+            <i class="fas fa-angle-right"></i>
+          </a>
+        </li>
+
+        <li class="page-item">
+          <a
+            (click)="goToLastPage()"
+            class="page-link"
+            href="javascript:void(0)"
+            aria-label="Last Page"
+            [class.disabled]="isLastPage"
+          >
+            <i class="fas fa-angles-right"></i>
+          </a>
+        </li>
+      </ul>
+
+    </nav>
+
+  </div>
+</div>
