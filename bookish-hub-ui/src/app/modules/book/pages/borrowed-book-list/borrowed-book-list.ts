@@ -98,7 +98,6 @@ export class BorrowedBookList implements OnInit{
       body: this.feedbackRequest
     }).subscribe({
       next:()=>{
-
       }
     })
   }

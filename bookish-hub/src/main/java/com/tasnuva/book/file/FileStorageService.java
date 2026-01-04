@@ -26,7 +26,7 @@ public class FileStorageService {
 
     private String uploadFile(MultipartFile sourceFile, String fileOutputSubPath) {
         final String finalUploadPath = fileUploadPath + File.separator + fileOutputSubPath;
-        File targetFolder = new File(fileOutputSubPath);
+        File targetFolder = new File(finalUploadPath);
 
         if(!targetFolder.exists()){
             boolean targetFolderCreated = targetFolder.mkdirs();
@@ -36,7 +36,7 @@ public class FileStorageService {
             }
         }
         final String fileExtension = getFileExtension(sourceFile.getOriginalFilename());
-        String targetFilePath = finalUploadPath + File.separator + System.currentTimeMillis() + fileExtension;
+        String targetFilePath = finalUploadPath + File.separator + System.currentTimeMillis() +"."+ fileExtension;
         Path targetPath = Paths.get(targetFilePath);
         try{
             Files.write(targetPath, sourceFile.getBytes());

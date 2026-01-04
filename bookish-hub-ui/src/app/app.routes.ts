@@ -2,8 +2,13 @@ import { Routes } from '@angular/router';
 import {Login} from './pages/login/login';
 import {Register} from './pages/register/register';
 import {ActivateAccount} from './pages/activate-account/activate-account';
+import {authGuard} from './services/guard/auth-guard';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: Login
+  },
   {
     path: 'login',
     component: Login
@@ -18,6 +23,7 @@ export const routes: Routes = [
   },
   {
     path: 'books',
-    loadChildren: () => import("./modules/book/book-module").then(m => m.BookModule)
+    loadChildren: () => import("./modules/book/book-module").then(m => m.BookModule),
+    canActivate: [authGuard]
   }
 ];

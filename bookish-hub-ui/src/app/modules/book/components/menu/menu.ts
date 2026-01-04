@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
+import {TokenService} from '../../../../services/token/token-service';
 
 
 @Component({
@@ -11,8 +12,13 @@ import {RouterLink} from '@angular/router';
   styleUrl: './menu.scss'
 })
 export class Menu implements OnInit{
-
+  userName: string | null = null;
+constructor(private tokenService: TokenService,private router:Router) {
+}
   ngOnInit(): void {
+
+      this.userName = this.tokenService.getUsername();
+
       const linkColor = document.querySelectorAll('.nav-link');
       linkColor.forEach(link => {
     /*    if (window.location.href.endsWith(link.getAttribute('href') || '')) {
@@ -27,6 +33,9 @@ export class Menu implements OnInit{
 
 
   logout() {
-
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
   }
+
+  protected readonly localStorage = localStorage;
 }

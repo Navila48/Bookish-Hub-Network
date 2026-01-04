@@ -1,11 +1,12 @@
 <h3>Book list </h3>
 @if (message){
   <div
-    class="alert"
+    class="alert alert-dismissible"
     [class.alert-success]=" status === 'success'"
     [class.alert-danger]="status === 'error'"
   >
-    <p>{{message}}</p>
+    <span>{{message}}</span>
+    <button class="btn-close" type="button" aria-label="Close" (click)="closeAlert()"></button>
   </div>
 }
 <hr>

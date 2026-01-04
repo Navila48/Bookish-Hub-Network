@@ -103,6 +103,7 @@ public class AuthenticationService {
                 .orElseThrow(()-> new IllegalStateException("Token is not found"));
         if(LocalDateTime.now().isAfter(savedToken.getExpiresAt())) {
             sendValidationEmail(savedToken.getUser());
+            throw new RuntimeException("Token is expired. A new token has been sent to the same email address");
         }
         var user = userRepository.findById(savedToken.getUser().getId())
                 .orElseThrow(()-> new IllegalStateException("User is not found"));

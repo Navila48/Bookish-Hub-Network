@@ -27,6 +27,7 @@ export class BookCard {
 
   get bookCover(): String | undefined {
     if(this._book.bookCover){
+      console.log("Book cover " + this._book.bookCover);
       return 'data:image/jpg;base64,'+ this._book.bookCover;
     }
     return 'https://picsum.photos/1900/800';

@@ -51,7 +51,6 @@ export class ManageBook implements OnInit{
 
   onFileSelected(event: any) {
     this.selectedBookCover =  event.target.files[0];
-    console.log(this.selectedBookCover);
     if(this.selectedBookCover){
       const reader = new FileReader();
       reader.onload = () =>{
