@@ -70,6 +70,7 @@
       <th scope="col">Author</th>
       <th scope="col">ISBN</th>
       <th scope="col">Rate</th>
+      <th scope="col">Book Owner</th>
       <th scope="col"><i class="fas fa-cogs"></i></th>
     </tr>
     </thead>
@@ -81,12 +82,13 @@
           <td>{{ book.author }}</td>
           <td>{{ book.isbn }}</td>
           <td><i class="fas fa-star text-warning"></i>{{ book.rate }}</td>
+          <td> {{ book.bookOwner}}</td>
           <td>
             <div class="d-flex gap-2">
               @if (book.returned) {
-                <i class="cursor-pointer fa-regular fa-paper-plane text-primary"></i>
+                <i class="cursor-pointer fa-regular fa-paper-plane text-primary" title="Book Returned"></i>
               } @else {
-                <i (click)="returnBorrowedBooks(book)" class=" cursor-pointer fa-solid fa-paper-plane text-success"></i>
+                <i (click)="returnBorrowedBooks(book)" class=" cursor-pointer fa-solid fa-paper-plane text-success" title="Return Book"></i>
               }
               <i class=" cursor-pointer fa-solid fa-circle-check" [class.text-success]="book.returnApproved"></i>
             </div>

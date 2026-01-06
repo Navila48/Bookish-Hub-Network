@@ -15,6 +15,9 @@ public class BookTransactionResponse {
     private String isbn;
     private double rate;
 
+    private String bookBorrower;
+    private String bookOwner;
+
     private boolean returned;
     private boolean returnApproved;
 }

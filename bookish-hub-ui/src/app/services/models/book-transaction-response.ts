@@ -9,5 +9,7 @@ export interface BookTransactionResponse {
   returnApproved?: boolean;
   returned?: boolean;
   title?: string;
-  rate?:number
+  rate?:number;
+  bookBorrower?: string;
+  bookOwner?: string
 }

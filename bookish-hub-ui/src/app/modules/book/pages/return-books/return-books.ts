@@ -70,23 +70,29 @@ export class ReturnBooks implements OnInit{
 
   approveBookReturn(book: BookTransactionResponse) {
     if(!book.returned){
-      this.status = 'error';
-      this.message = 'The Book is not returned yet';
+      this.showMessage('The Book is not returned yet', 'error');
       return ;
     }
     this.bookService.approveReturnedBook({
       'book-id': book.bookId as number
     }).subscribe({
       next:()=>{
-        this.status = 'success';
-        this.message = 'Book return approved';
+        this.showMessage( 'Book return approved', 'success');
         this.findAllReturnedBooks();
       },
       error:(err)=>{
         console.log(err);
-        this.status = 'error';
-        this.message = err.error.error;
+        this.showMessage(err.error.error, 'error');
       }
     })
+  }
+
+  showMessage(message: string, status:string) {
+    this.message = message;
+    this.status = status;
+
+    setTimeout(()=>{
+      this.message = '';
+    }, 5000);
   }
 }
