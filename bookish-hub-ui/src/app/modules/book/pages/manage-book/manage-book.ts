@@ -41,8 +41,6 @@ export class ManageBook implements OnInit{
              };
              if (book.bookCover) {
                this.selectedPicture = 'data:image/jpg;base64,' + book.bookCover;
-             } else {
-               this.selectedPicture = 'https://picsum.photos/1900/800';
              }
            }
          })
@@ -51,6 +49,7 @@ export class ManageBook implements OnInit{
 
   onFileSelected(event: any) {
     this.selectedBookCover =  event.target.files[0];
+    console.log("Selected Book Cover" + this.selectedBookCover);
     if(this.selectedBookCover){
       const reader = new FileReader();
       reader.onload = () =>{
@@ -65,10 +64,14 @@ export class ManageBook implements OnInit{
       body: this.bookRequest
     }).subscribe({
       next: (bookId)=> {
+        if (!this.selectedBookCover) {
+          this.router.navigate(['/books/my-book']);
+          return;
+        }
         this.bookService.uploadBookCoverPicture({
           'book-id': bookId,
           body: {
-            file: this.selectedBookCover
+           file: this.selectedBookCover as File
           }
         }).subscribe({
           next: () => {

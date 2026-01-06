@@ -83,15 +83,11 @@ export class BookList implements OnInit {
       'book-id' : book.bookId as number
     }).subscribe({
       next: ()=>{
-        this.showMessage(this.message,'success');
-        this.message = "Book added successfully in your list";
-        this.status = 'success';
+        this.showMessage("Book added successfully in your list",'success');
       },
       error: (err)=>{
         console.log(err)
-        this.showMessage(this.message,'error');
-        this.message = err.error.error;
-        this.status = 'error';
+        this.showMessage(err.error.error,'error');
       }
     })
   }
