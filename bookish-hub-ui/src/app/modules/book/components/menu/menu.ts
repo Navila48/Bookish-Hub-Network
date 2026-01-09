@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
-import {TokenService} from '../../../../services/token/token-service';
+import { RouterLink} from '@angular/router';
+import {KeycloakService} from '../../../../services/keycloak/keycloakService';
 
 
 @Component({
@@ -13,11 +13,11 @@ import {TokenService} from '../../../../services/token/token-service';
 })
 export class Menu implements OnInit{
   userName: string | null = null;
-constructor(private tokenService: TokenService,private router:Router) {
+constructor(private keycloakService: KeycloakService) {
 }
   ngOnInit(): void {
 
-      this.userName = this.tokenService.getUsername();
+      this.userName = this.keycloakService.keycloak?.subject as string;
 
       const linkColor = document.querySelectorAll('.nav-link');
       linkColor.forEach(link => {
@@ -32,10 +32,8 @@ constructor(private tokenService: TokenService,private router:Router) {
   }
 
 
-  logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['login']);
+   logout() {
+    return this.keycloakService.logout();
   }
 
-  protected readonly localStorage = localStorage;
 }

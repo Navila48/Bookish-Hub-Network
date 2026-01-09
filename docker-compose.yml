@@ -20,6 +20,18 @@ services:
     ports:
       - 1080:1080
       - 1025:1025
+  KeyCloak:
+    container_name: keycloak-bookhub
+    image: quay.io/keycloak/keycloak:26.5.0
+    ports:
+      - 9090:8080
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    networks:
+      - bookish-network
+    command:
+      - 'start-dev'
 
 networks:
   bookish-network:
