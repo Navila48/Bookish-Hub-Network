@@ -19,7 +19,7 @@ public class FileStorageService {
 
     @Value("${application.file.upload.cover-photo-path}")
     private String fileUploadPath;
-    public String saveFile(MultipartFile sourceFile, Integer userId) {
+    public String saveFile(MultipartFile sourceFile, String userId) {
         String fileOutputSubPath = "users" + File.separator + userId;
         return uploadFile(sourceFile, fileOutputSubPath);
     }

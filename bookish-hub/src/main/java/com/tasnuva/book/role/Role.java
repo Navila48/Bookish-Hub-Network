@@ -16,8 +16,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@EntityListeners(AuditingEntityListener.class)
+//@Entity
+//@EntityListeners(AuditingEntityListener.class)
 public class Role {
 
     @Id
@@ -26,9 +26,9 @@ public class Role {
     @Column(unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+/*    @ManyToMany(mappedBy = "roles")
     @JsonIgnore
-    private List<User> users;
+    private List<User> users;*/
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

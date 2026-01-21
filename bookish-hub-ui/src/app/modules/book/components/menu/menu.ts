@@ -12,12 +12,10 @@ import {KeycloakService} from '../../../../services/keycloak/keycloakService';
   styleUrl: './menu.scss'
 })
 export class Menu implements OnInit{
-  userName: string | null = null;
+  username = '' ;
 constructor(private keycloakService: KeycloakService) {
 }
   ngOnInit(): void {
-
-      this.userName = this.keycloakService.keycloak?.subject as string;
 
       const linkColor = document.querySelectorAll('.nav-link');
       linkColor.forEach(link => {
@@ -31,7 +29,11 @@ constructor(private keycloakService: KeycloakService) {
       });
   }
 
-
+get userName(): string{
+  const tokenParsed = this.keycloakService.keycloak?.tokenParsed;
+  this.username = tokenParsed?.['given_name'] ?? null;
+  return this.username;
+}
    logout() {
     return this.keycloakService.logout();
   }

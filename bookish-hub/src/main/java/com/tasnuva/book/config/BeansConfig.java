@@ -22,28 +22,28 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class BeansConfig {
 
-    private final UserDetailsService userDetailsService;
-    @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
+//    private final UserDetailsService userDetailsService;
+//    @Bean
+//    public AuthenticationProvider authenticationProvider(){
+//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+//        authProvider.setUserDetailsService(userDetailsService);
+//        authProvider.setPasswordEncoder(passwordEncoder());
+//        return authProvider;
+//    }
+//
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+//
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+//        return authenticationConfiguration.getAuthenticationManager();
+//    }
 
     @Bean
     public AuditorAware<String> auditorAware(){
         return new ApplicationAuditorAware();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean

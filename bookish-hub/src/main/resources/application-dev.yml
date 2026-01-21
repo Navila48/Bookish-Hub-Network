@@ -1,4 +1,9 @@
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: 'http://localhost:9090/realms/Bookhub'
   datasource:
     url: jdbc:postgresql://localhost:5432/book_hub_network
     username: username
@@ -29,13 +34,13 @@ spring:
         timeout: 3000
         writetimeout: 5000
 application:
-    security:
-      jwt:
-        secret-key: "MZygpewJsCpR0MzVdS9zqIbTbZf2JHVaJJmF2aFQXkM="
-        expiration: 86400000 # 1 day
-    mailing:
-      frontend:
-        activation-url: http://localhost:4200/activate-account
+#    security:
+#      jwt:
+#        secret-key: "MZygpewJsCpR0MzVdS9zqIbTbZf2JHVaJJmF2aFQXkM="
+#        expiration: 86400000 # 1 day
+#    mailing:
+#      frontend:
+#        activation-url: http://localhost:4200/activate-account
     file:
       upload:
         cover-photo-path: "./upload"

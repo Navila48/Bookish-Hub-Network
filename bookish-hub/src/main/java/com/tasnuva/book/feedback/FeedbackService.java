@@ -26,8 +26,8 @@ public class FeedbackService {
 
     public Integer saveFeedback(FeedbackRequest feedbackRequest, Authentication connectedUser) {
         Book book = bookRepository.findById(feedbackRequest.bookId()).orElseThrow(()-> new EntityNotFoundException("No book found with this id "+ feedbackRequest.bookId()));
-        User user = (User) connectedUser.getPrincipal();
-        if(Objects.equals(book.getOwner().getId(), user.getId())) {
+    //    User user = (User) connectedUser.getPrincipal();
+        if(Objects.equals(book.getCreatedBy(), connectedUser.getName())) {
             throw new OperationNoPermittedException("You can't post feedback at your own book");
         }
 
